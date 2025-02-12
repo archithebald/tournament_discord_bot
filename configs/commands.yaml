@@ -1,0 +1,28 @@
+tournaments:
+  create:
+    name: create
+    description: To register/create a tournament.
+    options:
+      name:
+        required: true
+      description:
+        required: false
+      format:
+        required: true
+      date:
+        required: true
+      size:
+        required: true
+      tier:
+        required: true
+      game:
+        required: true
+  delete:
+    name: delete
+    description: To delete a tournament.
+    options:
+      id:
+        required: true
+  update:
+    name: update
+    description: To update a tournament
