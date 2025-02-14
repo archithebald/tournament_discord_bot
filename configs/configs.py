@@ -9,6 +9,7 @@ CONFIGS = os.path.join(ROOT, "configs")
 
 commands = yaml.safe_load(open(os.path.join(CONFIGS, "commands.yaml")))
 roles = yaml.safe_load(open(os.path.join(CONFIGS, "roles.yaml")))
+channels = yaml.safe_load(open(os.path.join(CONFIGS, "channels.yaml")))
 
 def get_commands(category: str = ""):
     return commands[category] if category != "" else commands
@@ -38,3 +39,9 @@ def get_commands_files():
     files = [file.name for file in COMMANDS.iterdir() if file.name.endswith(".py")]
     
     return files
+
+def get_channel_id(name):
+    return str(channels[name]["id"])
+
+def get_command_options(category, name):
+    return commands[category][name]["options"]

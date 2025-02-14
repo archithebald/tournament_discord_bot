@@ -4,18 +4,25 @@ tournaments:
     description: To register/create a tournament.
     options:
       name:
+        type: str
         required: true
       description:
+        type: str
         required: false
       format:
+        type: str
         required: true
       date:
+        type: str
         required: true
       size:
+        type: int      
         required: true
       tier:
+        type: int
         required: true
       game:
+        type: str
         required: true
   delete:
     name: delete
@@ -25,4 +32,7 @@ tournaments:
         required: true
   update:
     name: update
-    description: To update a tournament
+    description: To update a tournament.
+  show_bracket:
+    name: show_bracket
+    description: Displays a tournament's bracket.

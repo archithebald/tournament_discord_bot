@@ -1,9 +1,8 @@
 import discord, importlib
 
-from discord import Interaction
-from discord import application_command
+from functools import wraps
 
-from configs.configs import get_commands_files, get_command
+from configs.configs import get_commands_files, get_command, get_command_options
 
 def command_exists(client: discord.Bot, name):   
     return True if name in client.commands else False
@@ -14,9 +13,12 @@ def register_command(client: discord.Bot, command_info, module):
         print(f"Command {name} exists")
     else:
         print(f"Registering command {name}")
-        @client.command(name=name, description=command_info["description"])
-        async def command(ctx):
-            await module.command(ctx)   
+    
+        @client.tree.command(name=name, description=command_info["description"])
+        async def command(ctx, test: str):
+            await module.command(ctx)
+    
+        options: dict = get_command_options(category=module.CATEGORY, name=name)
 
 def commands_handler(client: discord.Bot):
     files = get_commands_files()
